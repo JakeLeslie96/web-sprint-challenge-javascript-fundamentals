@@ -17,6 +17,7 @@ function myFunction() {
 
 //🚀🚀🚀 ⬇️ 📝 Explanation ⬇️ 📝 🚀🚀🚀: 
 
+// nestedFunction is able to access the variable 'internal' because it is within the same scope 'my function'.
 
 
 
@@ -30,10 +31,14 @@ function myFunction() {
 💡 NOTE: you may use a for loop for this function if you wish 
 */
 
-function summation(/*Your Code Here*/) {
-  /*Your Code Here*/
-
+function summation(number) {
+  let sum = 0 
+  for (let i = 1; i <= number; i++) {
+    sum += i;
   }
+  return sum
+}
+
  
 
 // 🦁🦁🦁 Topic 2: ADVANCED Array Methods 🦁🦁🦁
@@ -60,8 +65,8 @@ const zooAnimals = [
   💡 NOTE: the array returned should be an array of strings, and each string should follow this pattern: "name: {name}, scientific: {scientific name}"
   */
 
-  function animalNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function animalNames(zooAnimalsCB){
+   zooAnimals.forEach
   }
   
 
@@ -75,10 +80,13 @@ const zooAnimals = [
   💡 NOTE: Do some research for other methods that can help help you
   */
 
-  function lowerCaseNames(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowerCaseNames(zooAnimals){
+   const mappedZoo = zooAnimals.map((element) => {
+    return element.animal_name.toLowerCase();
+   });
+   return mappedZoo
   }
-  
+  console.log(lowerCaseNames(zooAnimals))
   
   /* 🦁🦁🦁 Request 3: .filter() 🦁🦁🦁
   The zoo is concerned about animals with a lower population count. 
@@ -88,9 +96,13 @@ const zooAnimals = [
   3. Return this new array
   */
 
-  function lowPopulationAnimals(/*Your Code Here*/){
-    /*Your Code Here*/
+  function lowPopulationAnimals(zooAnimals){
+    const lowPop = zooAnimals.filter((element) => {
+      return element.population < 5
+    })
+    return lowPop;
   }
+  console.log(lowPopulationAnimals(zooAnimals))
   
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -102,9 +114,13 @@ const zooAnimals = [
   💡 NOTE: Remember the reduce method takes two arguments: a callback (which itself takes two args - the accumulator and the item), and an initial value for the count. Check MDN/W3Schools for syntax!
   */
 
-  function USApop(/*Your Code Here*/){
-    /*Your Code Here*/
+  function USApop(zooAnimals){
+    const reducedZooPop = zooAnimals.reduce((accumulator, currentValue) => {
+      return accumulator + currentValue.population
+    }, 0)
+    return reducedZooPop
   }
+  console.log(USApop(zooAnimals))
   
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
@@ -164,7 +180,8 @@ function greeting(/*Your Code Here */){
 
 // 🐴🐴🐴 Topic 3: Prototypes 🐴🐴🐴 //
 
-//🐴🐴🐴 Task: You are to build a cuboid maker that can return values for a cuboid's volume or surface area. Cuboids are similar to cubes but do not have even sides. Follow the steps in order to accomplish this challenge. 🐴🐴🐴
+//🐴🐴🐴 Task: You are to build a cuboid maker that can return values for a cuboid's volume or surface area. Cuboids are similar to cubes but do not have even sides. 
+//Follow the steps in order to accomplish this challenge. 🐴🐴🐴
 
 /* 🐴🐴🐴 Step 1: Base Constructor 🐴🐴🐴
  Use CuboidMaker to do the following:
