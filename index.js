@@ -66,7 +66,12 @@ const zooAnimals = [
   */
 
   function animalNames(zooAnimalsCB){
-   zooAnimals.forEach
+    const displayNames = [];
+    zooAnimals.forEach((animal) => {
+      const { animal_name, scientific_name } = animal;
+      displayNames.push(`name: ${animal_name}, scientific: ${scientific_name}`);
+    });
+    return displayNames;
   }
   
 
@@ -102,7 +107,6 @@ const zooAnimals = [
     })
     return lowPop;
   }
-  console.log(lowPopulationAnimals(zooAnimals))
   
 
   /* 🦁🦁🦁 Request 4: .reduce() 🦁🦁🦁
@@ -120,20 +124,20 @@ const zooAnimals = [
     }, 0)
     return reducedZooPop
   }
-  console.log(USApop(zooAnimals))
   
   
   // 🦁🦁🦁 Callbacks 🦁🦁🦁  
   /* 🦁🦁🦁 Step 1: Create a higher-order function 🦁🦁🦁
   Use the higher-order function called consume to do the following:
-    1. Receive 3 parameters: a, b and cb. The first two parameters (a and b) can take any argument (we can pass any value as an argument) and the last parameter (cb) accepts a callback
+    1. Receive 3 parameters: a, b and cb. The first two parameters (a and b) can take any argument (we can pass any value as an argument)
+       and the last parameter (cb) accepts a callback
     2. Return the invocation of cb taking `a` and `b` as its arguments
     
     💡 NOTE: The tests for 'consume' will pass if it is created correctly and also after you correctly complete the functions 'add' and 'greeting' below in Step 2.
   */
 
-  function consume(/*Your Code Here */){
-    /*Your Code Here */
+  function consume(a,b,cb){
+    return cb(a,b)
   }
  
   
@@ -144,9 +148,9 @@ const zooAnimals = [
  2. Return the sum of those numbers
  */
 
-function add(/*Your Code Here */){
-    /*Your Code Here*/
-  }
+function add(a,b,){
+  return a + b
+}
 
 
 /* Use multiply to do the following:
@@ -154,8 +158,8 @@ function add(/*Your Code Here */){
 2. Return the product of those numbers
 */
 
-function multiply(/*Your Code Here */){
-   /*Your Code Here */
+function multiply(a,b){
+  return a * b
   }
 
 
@@ -165,9 +169,9 @@ function multiply(/*Your Code Here */){
 💡 NOTE: The string returned must match the format above or the test will not pass!
 */
 
-function greeting(/*Your Code Here */){
-   return /*Your Code Here */
-  }
+function greeting(firstName, lastName) {
+  return `Hello ${firstName} ${lastName}, nice to meet you!`;
+}
   
   
 // 🦁🦁🦁 Step 3: Check your work by un-commenting the following calls to consume(): 🦁🦁🦁 
@@ -192,16 +196,23 @@ function greeting(/*Your Code Here */){
 - Instances of CuboidMaker should initialize `length`, `width` and `height` properties
 */
 
-function CuboidMaker(/*Your Code Here */){
-  /*Your Code Here */
-}
+function CuboidMaker(props){
+    this.length = props.length;
+    this.width = props.width;
+    this.height = props.height
+  }
+  
+    
+
 
 
 /* 🐴🐴🐴 Step 2: Volume Method 🐴🐴🐴
   Create a method called volume using CuboidMaker's prototype that returns the volume of a given cuboid's length, width, and height
   💡 NOTE: Formula for cuboid volume: length * width * height   
 */
-
+CuboidMaker.prototype.volume = function(){
+  return this.length * this.width * this.height
+}
 
 
 
@@ -209,14 +220,20 @@ function CuboidMaker(/*Your Code Here */){
   Create another method called surfaceArea using CuboidMaker's prototype that returns the surface area of a given cuboid's length, width, and height. 
   💡 NOTE: Formula for cuboid surface area: 2 * (length * width + length * height + width * height)  
 */
-
+CuboidMaker.prototype.surfaceArea = function(){
+  return 2 * (this.length * this.width + this.length * this.height + this.width * this.height) 
+}
 
 
 
 /* 🐴🐴🐴 Step 4: Create a new object that uses CuboidMaker (not auto graded)🐴🐴🐴
   Create an object called cuboid that uses the new keyword to use our CuboidMaker constructor
   Add properties and values of length: 4, width: 5, and height: 5 to cuboid. */
-
+  const cuboid = new CuboidMaker ({
+    height: 4,
+    width: 5,
+    length: 5
+  })
 
 
 
@@ -228,12 +245,21 @@ function CuboidMaker(/*Your Code Here */){
  
 
 // 🦄🦄🦄 Topic 4: Classes 🦄🦄🦄 //
-//Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
+//Using CuboidMakerTwo, take your prototypes from above and refactor into class syntax. 
+//Then, create an object called cuboidTwo that uses the new keyword to use our CuboidMakerTwo class.
  
-class CuboidMakerTwo{
-
+class CuboidMakerTwo extends CuboidMaker{
+  
+  constructor (props){
+    super(props)
+  }
 }
 
+const cuboidTwo = new CuboidMakerTwo({
+  height: 5,
+  width: 2,
+  length:5
+})
 
 
 
